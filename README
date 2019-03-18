@@ -1,0 +1,45 @@
+hbad - Heartbleed Analysis Daemon
+=================================
+
+Abstract
+--------
+
+hbad allows you to test clients on the heartbleed bug. Please see the corresponding PDFs at
+https://blog.curesec.com/article/blog/32.html for more information. 
+
+Install
+-------
+
+# tar xvzf hbad.tar.gz
+# cd hbad
+# mkdir out
+# make
+
+Execute
+-------
+
+# ./hbad -p $PORT -t $TYPE 
+
+$TYPE is 1, 2 or 3:
+  * 1, heartbeat payload 0x0000
+  * 2, heartbeat payload 0x00ff
+  * 3, heartbeat payload 0xffff
+
+---- client example ----
+
+openssl client:
+# openssl s_client -connect x.x.x.x:$PORT -tls1 -debug
+
+w3m:
+# w3m https://x.x.x.x:port
+
+irssi:
+# /connect -ssl x.x.x.x port
+
+fetchmail:
+# fetchmail -P port
+
+Contact
+-------
+
+security@curesec.com
